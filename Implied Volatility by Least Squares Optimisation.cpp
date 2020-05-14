@@ -80,6 +80,64 @@ class Pricer{
 
 };
 
+int main()
+{
+
+   OptionData opt;
+
+   opt.K = 65.0;
+   opt.T = .25;
+   opt.r = .08;
+   opt.b = opt.r;
+   opt.sig = .3;
+   opt.S = 60.0;
+
+   value_type putMarketPrice = 5.8462;
+   value_type callMarketPrice = 2.1333;
+
+   auto pricer1 = std::bind(&Pricer::PutPrice, option, std::placerholders::_1);
+   ImpliedVolatilityEstimator ivp1(putMarketPrice, pricer1); 
+
+   auto pricer2 = [&option](value_type sig) {return option.CallPrice(sig); }; 
+   ImpliedVolatilityEstimator ivp2(callMarketPrice, pricer2); 
+
+
+   //bounds for Implied Vol 
+
+   value_type sigL = .0023;
+   value_type sigH = .9;
+   value_type fL = 0.0;
+   value_type fH = 0.0;
+
+   TerminatorI<value_type> stopping(1.0e-12);
+   ReportingDefault<value_type> report;
+   MISDefault<int> mis;
+   
+  ThreePointIntervalSolver<value_type> solver1(ivp1, sigL, sigH); 
+  GoldenSectionIntervalSolver<value_type> solver2(ivp2, sigL, sigH); 
+  BrentIntervalSolver<value_type> solver3(ivp2, sigL, sigH); 
+
+  Mediator<value_type> med1(ivp1, sigL, sigH, stopping, solver1, mis, repot); 
+  med1.run();
+
+  Mediator<value_type> med2(ivp2, sigL, sigH, stopping, solver2, mis, report); 
+  med2.run(); 
+
+  Mediator<value_type> med3(ivp2, sigL, sigH, stopping, solver3, mis, report); 
+  med3.run(); 
+
+}
+
+
+  
+
+
+
+
+
+
+
+
 
 
 
