@@ -1,6 +1,6 @@
-import<iostream>
-import<algorithm> 
-import<cmath> 
+#include <iostream>
+#include <algorithm> 
+#include <cmath> 
 using namespace std; 
 
 #ifndef Pi 
@@ -11,9 +11,9 @@ using namespace std;
 class option{
 public:
      
-     double Und, stike, rf, sig_guess, t, CP; //CP call price  
-     int type; /0 for call, 1 for put 
-
+     double und, strike, rf, sig_guess, t, CP; //CP call price  
+     int type; //0 for call, 1 for put 
+     double sig; 
      int it=0; //iterations 
      
      option(); 
@@ -27,15 +27,16 @@ public:
      double put_search(); 
 
      void display_parameters(); 
+     void display_results(); 
 
 }; 
 
 option::option()
 {
-     CP = 2.34; 
-     und=100;
-     stike=105;
-     rf=.04;
+     CP = 2.282;
+     und=50;
+     strike=52;
+     rf=.03;
      sig_guess=.01;
      t=.5;
 
@@ -46,7 +47,8 @@ double option::call_search()
 {
     double sig_est = sig_guess; 
     double price; 
-    double ERROR =.0000001; 
+    double ERROR =.0001; 
+    
     
     do{ 
 
@@ -63,7 +65,7 @@ double option::call_search()
 
        it++; 
 
-    }while(price<CP-ERROR || price>CP+Error) 
+    }while(price<CP-ERROR || price>CP+ERROR); 
 
     return sig_est; 
 
@@ -76,7 +78,7 @@ double option::put_search()
 {
     double sig_est = sig_guess; 
     double price; 
-    double ERROR =.0000001; 
+    double ERROR =.00001; 
     
     do{ 
 
@@ -93,7 +95,7 @@ double option::put_search()
 
        it++; 
 
-    }while(price<CP-ERROR || price>CP+Error) 
+    }while(price<CP-ERROR || price>CP+ERROR);
 
     return sig_est; 
 
@@ -102,21 +104,27 @@ double option::put_search()
 
 
 
-option:: search()
+void option:: search()
 {
 
-   if(type==1)
+   if(type==0)
    {
-     call_search(); 
+     cout<<"\nSearching......      ";
+     sig=call_search(); 
+     cout<<"Found\n"; 
+     
    } 
    else{
-     put_search(); 
+   	 cout<<"\nSearching......      ";
+     sig=put_search(); 
+     cout<<"Found\n"; 
+     
    } 
 }
 
 void option:: display_parameters()
 {
-  if(int == 0) 
+  if(type == 0) 
    {
      cout<<"Call\n"; 
    } 
@@ -201,17 +209,26 @@ double option:: cnd(double x)
   return w;
 }
 
+void option::display_results() 
+{ 
+	cout<<"\nImplied Vol Est:    -> "<<sig*100<<"%"; 
+	
+	cout<<"\nIterations taken    -> "<<it<<" iterations"; 
+	
+} 
 
-int main(); 
+
+int main()
+
 {
 
 option iv_finder;
 
 iv_finder.display_parameters();
 iv_finder.search(); 
-
-
-
+iv_finder.display_results(); 
+	
+cout<<"\n\nend";
 
 return 0; 
 
