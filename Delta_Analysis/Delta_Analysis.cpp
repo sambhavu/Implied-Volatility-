@@ -28,11 +28,11 @@ public:
      double rho; 
 
      double U = 100;
-     double K_s = 80;   //start strike 
+     double K_s = 60;   //start strike 
      double t=.5; 
      double r=.03; 
      double iv=.25; 
-     double k_end= 120; 
+     double k_end= 140; 
      double k_step=.5;   //strike step
 
      
