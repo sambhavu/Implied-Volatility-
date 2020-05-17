@@ -12,18 +12,17 @@ using namespace std;
 class option{
 
 public:
-     double call_price(double S, double K 
+     double call_price(double S, double K, 
                            double r, double sigma, double time); 
      double put_price(double S, double K,
                             double r, double sigma, double time); 
 
      double cnd(double x); 
      double normdist(double x); 
-     double greeks(double S, double K, double r, double sigma, double time); 
+     void greeks(double S, double K, double r, double sigma, double time); 
  
      double delta;
      double gamma;
-     double theta; 
      double theta; 
      double vega; 
      double rho; 
@@ -34,7 +33,7 @@ public:
      double r=.03; 
      double iv=.25; 
      double k_end= 120; 
-     double k_step=.5   //strike step
+     double k_step=.5;   //strike step
 
      
      void Delta_Analysis(); 
@@ -50,7 +49,7 @@ void option::Delta_Analysis()
 
    while(strike<=k_end) 
    { 
-         greeks(U, strike, r, iv, time); 
+         greeks(U, strike, r, iv, t); 
          cout<<delta<<"\n"; 
          strike=strike+k_step; 
 
@@ -173,9 +172,9 @@ int main()
 {
 
    option call;
+   call.Delta_Analysis();
 
 
 
 return 0; 
 }
-
