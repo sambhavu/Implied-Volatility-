@@ -1212,11 +1212,14 @@ double option::call_search(double CP, double S, double K, double r, double time)
     
     double t=time;
     
-    double price; 
-    double ERROR =.1; 
+    double price=0; 
+    double ERROR =.05; 
     
+     cout<<"sig\n";
+
     
-    do{ 
+    while(price<CP-ERROR || price>CP+ERROR)
+    {
 
        price=call_price(und,strike,rf,sig_est,t); 
 
@@ -1228,11 +1231,19 @@ double option::call_search(double CP, double S, double K, double r, double time)
       else{
          sig_est-=.0002; 
       } 
+      
+      if(sig_est<0)
+      {
+      	sig_est=0;
+      	break;
+      } 
 
        it++; 
+       //cout<<sig_est<<"\n"; 
 
-    }while(price<CP-ERROR || price>CP+ERROR); 
-
+    }
+    
+   
     return sig_est; 
 
 
