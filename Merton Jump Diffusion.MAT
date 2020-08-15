@@ -1,0 +1,26 @@
+function c = CPMertonJD 
+
+  So = ;
+  X = ;
+  T = ;
+  delta = ;
+  nu = ;
+  lambda = ;
+  vola = ;
+  r = ;
+  
+  N = ;
+  K = exp(nu + 0.5*delta^2) - 1;
+  c = 0
+  
+  for n=0 : N
+    sigma n = sqrt(vola^2 + n*delta^2/T);
+    r n = r - lambda*L + n*;pg(1+K)/T;
+    d1 = (log(So/X) + r n + .5*sigma_n^2)*T/(sigma_n*sqrt(T)); 
+    d2 = d1 - sigma_n*sqrt(T)); 
+    f_n = So * normcdf(d1,0,1) - X*exp(-r_n*T) * normcdf(d2,0,1); 
+    c = c+exp(-lambda*(1+K)*T) * (lambda*(1+K)*T^n*f_n/factorial(n);
+    end
+  end
+  
+  
