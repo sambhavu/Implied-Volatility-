@@ -1,4 +1,4 @@
-import yfinance as yf
+import yfinance as yfg
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
