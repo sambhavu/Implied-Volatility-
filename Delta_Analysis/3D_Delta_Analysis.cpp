@@ -1,3 +1,6 @@
+
+//outputs inputs to excel for 3d modeling
+
 #include<iostream> 
 #include<cmath> 
 #include<vector> 
