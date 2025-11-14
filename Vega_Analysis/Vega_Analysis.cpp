@@ -54,7 +54,7 @@ void option::Vega_Analysis()
          //cout<<strike<<", ";
          cout<<vega<<"\n"; 
          
-         impliedvol=impliedvol+k_step; 
+         impliedvol=impliedvol+iv_step; 
 
    } 
 
