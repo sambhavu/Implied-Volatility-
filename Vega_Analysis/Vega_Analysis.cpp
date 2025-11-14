@@ -31,6 +31,7 @@ public:
      double iv_s = .1;  
      double t=.5; 
      double r=.03; 
+     double srike = 100;
      double iv=.25; 
      double iv_end= .5; 
      double iv_step=.02;   //vol step
