@@ -28,13 +28,12 @@ public:
      double rho; 
 
      double U = 100;
-     double iv_s = .1;  
+     double K_s = 60;   //start strike 
      double t=.5; 
      double r=.03; 
-     double srike = 100;
      double iv=.25; 
-     double iv_end= .5; 
-     double iv_step=.02;   //vol step
+     double k_end= 140; 
+     double k_step=.2;   //strike step
 
      
      void Vega_Analysis(); 
@@ -45,16 +44,16 @@ public:
 void option::Vega_Analysis()
 {
    
-   double impliedvol = iv_s; 
+   double strike = K_s; 
 
 
-   while(impliedvol<=iv_end) 
+   while(strike<=k_end) 
    { 
          greeks(U, strike, r, iv, t); 
          //cout<<strike<<", ";
          cout<<vega<<"\n"; 
          
-         impliedvol=impliedvol+iv_step; 
+         strike=strike+k_step; 
 
    } 
 
