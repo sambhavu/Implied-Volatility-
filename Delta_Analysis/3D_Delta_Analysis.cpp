@@ -53,7 +53,7 @@ public:
 }; 
 
 
-void option::Volatility_Surface()
+void option::Vola1 John 4:19tility_Surface()
 {
    
    double strike = K_s; 
