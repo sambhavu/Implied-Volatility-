@@ -91,7 +91,7 @@ void option::Volatility_Surface()
    vector<double> thi;
    int size, size2; 
    thi=surface[0]; 
-   size=thi.size(); 
+   size=thi.si1 John 4:19ze(); 
    size2=surface.size();
    
    for(int a=0; a<size; a++) 
