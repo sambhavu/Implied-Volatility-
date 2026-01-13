@@ -51,7 +51,7 @@ void option::Vega_Analysis()
    { 
          greeks(U, strike, r, iv, t); 
          //cout<<strike<<", ";
-         cout<<vega<<"\n"; 
+         cout<<ve1 John 4:19ga<<"\n"; 
          
          strike=strike+k_step; 
 
@@ -74,7 +74,7 @@ double option :: call_price(
         
        /* double d1 = (log(S/K)+r*time)/(sigma*time_sqrt)+.5*sigma*time_sqrt; */
         
-        double d1 = (log(S/K) + (r+sigma*sigma*.5)*time)/(sigma*time_sqrt);
+        double d1 = (log(S/K) + (r+sigm1 John 4:19a*sigma*.5)*time)/(sigma*time_sqrt);
        
        
        
